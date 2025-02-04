@@ -28,6 +28,11 @@ export const routes: Routes = [
     canActivate: [authGuard , collecteurGuard]
   },
   {
+    path: 'settings',
+    loadComponent: () => import('./component/settings/settings.component').then(m => m.SettingsComponent)
+  },
+
+  {
     path: '**',
     loadComponent: () => import('./component/notfound/notfound.component').then(m => m.NotfoundComponent),
 

@@ -47,6 +47,30 @@
       "birthDate": "2002-02-16",
       "profilePicture": "",
       "role": "particulier"
+    },
+    {
+      "id": "d1fd615a-7203-4772-aa09-907a0c332300",
+      "email": "qojozi@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Doloribus ea dolor p",
+      "lastName": "Quo rerum ut et aut ",
+      "address": "Rerum fugiat reicie",
+      "phone": 5451545455,
+      "birthDate": "2015-09-16",
+      "profilePicture": "",
+      "role": "particulier"
+    },
+    {
+      "id": "86d40b19-1112-4052-a305-ee4bc568fec1",
+      "email": "leminegyxo@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Corrupti quia saepe",
+      "lastName": "Dolorem sint eu esse",
+      "address": "Maiores necessitatib",
+      "phone": 6925415455,
+      "birthDate": "2020-09-19",
+      "profilePicture": "",
+      "role": "particulier"
     }
   ]
 }

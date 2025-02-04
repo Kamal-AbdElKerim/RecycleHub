@@ -68,4 +68,6 @@ export class RegisterComponent {
       this.store.dispatch(registerUser({ user }));
     }
   }
+
+
 }

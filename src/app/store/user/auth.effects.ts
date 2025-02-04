@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import {catchError, map, mergeMap, of, switchMap} from 'rxjs';
+import {catchError, map, mergeMap, of, switchMap, tap} from 'rxjs';
 import * as AuthActions from './auth.actions';
 import { User } from '../../models/User';
-import {registerUser, registerUserFailure, registerUserSuccess} from "./auth.actions";
+import {
+  deleteUser, deleteUserFailure,
+  deleteUserSuccess,
+  registerUser,
+  registerUserFailure,
+  registerUserSuccess,
+} from "./auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -65,4 +71,19 @@ export class AuthEffects {
       )
     )
   );
+
+
+// Supprimer un utilisateur
+deleteUser$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(deleteUser),
+    mergeMap(({ userId }) =>
+      this.http.delete(`${this.API_URL}/${userId}`).pipe(
+        map(() => deleteUserSuccess()),
+        catchError((error) => of(deleteUserFailure({ error: error.message })))
+      )
+    )
+  )
+);
+
 }

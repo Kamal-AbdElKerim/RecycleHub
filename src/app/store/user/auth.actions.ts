@@ -14,6 +14,15 @@ export const loginUserFailure = createAction('[Auth] Login User Failure', props<
 // Logout
 export const logoutUser = createAction('[Auth] Logout User');
 
+
+
+
+// Action pour supprimer un utilisateur
+export const deleteUser = createAction('[Auth] Delete User', props<{ userId: number }>());
+export const deleteUserSuccess = createAction('[Auth] Delete User Success');
+export const deleteUserFailure = createAction('[Auth] Delete User Failure', props<{ error: string }>());
+
+
 // Load Users
 export const loadUsers = createAction('[Auth] Load Users');
 export const loadUsersSuccess = createAction('[Auth] Load Users Success', props<{ users: User[] }>());

@@ -64,5 +64,22 @@ export const authReducer = createReducer(
       currentUser: null,
       error: null,
     };
-  })
+  }),
+
+
+  on(AuthActions.deleteUser, (state) => ({
+    ...state,
+    currentUser: null, // ✅ Remove user from state
+    users: state.users.filter(u => u.id !== (state.currentUser ? state.currentUser.id : -1)) // Remove from users list, safeguard null currentUser
+  })),
+
+
+
+
+  on(AuthActions.deleteUserSuccess, (state) => ({
+    ...state,
+    currentUser: null // L'utilisateur est supprimé, donc on le supprime du state
+  }))
+
+
 );
