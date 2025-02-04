@@ -1,0 +1,81 @@
+<div class="body">
+  <div class="card p-4">
+    <h2 class="text-center mb-4 text-primary">Inscription</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+   <div class="row">
+     <div class="mb-3 col-6">
+       <label class="form-label">Nom</label>
+       <input type="text" class="form-control" formControlName="firstName" placeholder="Entrez votre nom">
+       <div class="text-danger" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+         Le nom est requis.
+       </div>
+     </div>
+
+     <div class="mb-3 col-6">
+       <label class="form-label">Prénom</label>
+       <input type="text" class="form-control" formControlName="lastName" placeholder="Entrez votre prénom">
+       <div class="text-danger" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+         Le prénom est requis.
+       </div>
+     </div>
+   </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="exemple@email.com">
+        <div class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">L'email est requis.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">L'email n'est pas valide.</span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="••••••">
+        <div class="text-danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Min. 6 caractères.</span>
+        </div>
+      </div>
+
+
+      <div class="row">
+      <div class="mb-3 col-6">
+        <label class="form-label">Téléphone</label>
+        <input type="number" class="form-control" formControlName="phone" placeholder="06XXXXXXXX">
+        <div class="text-danger" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+          <span *ngIf="registerForm.get('phone')?.errors?.['required']">Le numéro est requis.</span>
+          <span *ngIf="registerForm.get('phone')?.errors?.['pattern']">Doit contenir 10 chiffres.</span>
+        </div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" class="form-control" formControlName="birthDate">
+        <div class="text-danger" *ngIf="registerForm.get('birthDate')?.invalid && registerForm.get('birthDate')?.touched">
+          La date est requise.
+        </div>
+      </div>
+      </div>
+ <div class="row">
+   <div class="mb-3 col-6">
+     <label class="form-label">Photo de profil (optionnel)</label>
+     <input type="file" class="form-control" formControlName="profilePicture">
+   </div>
+   <div class="mb-3 col-6">
+     <label class="form-label">Adresse</label>
+     <input type="text" class="form-control" formControlName="address" placeholder="Rue, Ville, Code Postal">
+     <div class="text-danger" *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+       L'adresse est requise.
+     </div>
+   </div>
+ </div>
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
+        S'inscrire
+      </button>
+    </form>
+  </div>
+
+</div>
