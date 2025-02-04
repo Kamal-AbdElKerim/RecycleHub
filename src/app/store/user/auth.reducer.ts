@@ -1,42 +1,68 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
-import {User} from "../../models/User";
+import { User } from '../../models/User';
 
 export interface AuthState {
   users: User[];
   currentUser: User | null;
+  error: string | null;
 }
 
+const storedUser = localStorage.getItem('currentUser');
 const initialState: AuthState = {
-  users: [], // Pre-load collecteurs in local storage
-  currentUser: null,
+  users: [],
+  currentUser: storedUser ? JSON.parse(storedUser) : null,
+  error: null,
 };
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.registerUser, (state, { user }) => ({
+
+  // ✅ Store users when loaded
+  on(AuthActions.loadUsersSuccess, (state, { users }) => ({
     ...state,
-    users: [...state.users, user],
-    currentUser: user || null
+    users,
   })),
-  on(AuthActions.loginUser, (state, { email, password }) => {
-    const user = state.users.find((u) => u.email === email && u.password === password);
+  on(AuthActions.loadUsersFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+
+  // ✅ Store `currentUser` in `localStorage` after registration
+  on(AuthActions.registerUserSuccess, (state, { user }) => {
+    localStorage.setItem('currentUser', JSON.stringify(user));
     return {
       ...state,
-      currentUser: user || null,
+      users: [...state.users, user],
+      currentUser: user,
+      error: null,
     };
   }),
-  on(AuthActions.logoutUser, (state) => ({
+  on(AuthActions.registerUserFailure, (state, { error }) => ({
     ...state,
-    currentUser: null,
+    error,
   })),
-  on(AuthActions.updateUser, (state, { id, changes }) => ({
+
+  // ✅ Store `currentUser` in `localStorage` after login
+  on(AuthActions.loginUserSuccess, (state, { user }) => {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    return {
+      ...state,
+      currentUser: user,
+    };
+  }),
+  on(AuthActions.loginUserFailure, (state, { error }) => ({
     ...state,
-    users: state.users.map((u) => (u.id === id ? { ...u, ...changes } : u)),
+    error,
   })),
-  on(AuthActions.deleteUser, (state, { id }) => ({
-    ...state,
-    users: state.users.filter((u) => u.id !== id),
-    currentUser: state.currentUser?.id === id ? null : state.currentUser,
-  }))
+
+  // ✅ Remove `currentUser` from `localStorage` on logout
+  on(AuthActions.logoutUser, (state) => {
+    localStorage.removeItem('currentUser');
+    return {
+      ...state,
+      currentUser: null,
+      error: null,
+    };
+  })
 );

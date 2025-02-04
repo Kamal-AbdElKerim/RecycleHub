@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
 import {CollectionRequest} from "../../models/request.model";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {selectAllRequests} from "../../store/requests/requests.selectors";
 import * as RequestsActions from '../../store/requests/requests.actions';
 import { v4 as uuidv4 } from 'uuid';
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {AuthState} from "../../store/user/auth.reducer";
+import {selectAuthError} from "../../store/user/auth.selectors";
 
 @Component({
   selector: 'app-requests',
@@ -29,6 +31,7 @@ export class RequestsComponent {
     timeSlot: '',
     status: 'En attente',
   };
+
 
   constructor(private store: Store) {
     this.requests$ = this.store.select(selectAllRequests);

@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "88bcd2ab-c757-4d40-ad41-afe91b3a6ae2",
+      "email": "collecteur@gmail.com",
+      "password": "collecteur@gmail.com",
+      "firstName": "Consequatur molestia",
+      "lastName": "Dicta cupiditate sit",
+      "address": "Doloribus aliquid es",
+      "phone": 6694746222,
+      "birthDate": "1997-07-18",
+      "profilePicture": "",
+      "role": "collecteur"
+    },
+    {
+      "id": "e6ab4ab8-c80e-4a5e-a20a-8344a881558a",
+      "email": "collecteur2@gmail.com",
+      "password": "collecteur2@gmail.com",
+      "firstName": "Maxime quos tempor l",
+      "lastName": "Voluptatum doloremqu",
+      "address": "Reprehenderit consec",
+      "phone": 6694746223,
+      "birthDate": "2005-12-20",
+      "profilePicture": "",
+      "role": "collecteur"
+    },
+    {
+      "id": "805d061b-97a6-4965-bd0b-d8c18d880367",
+      "email": "collecteur3@gmail.com",
+      "password": "collecteur3@gmail.com",
+      "firstName": "Consequatur Ut temp",
+      "lastName": "Voluptate in odit er",
+      "address": "Qui nihil et consequ",
+      "phone": 6694746222,
+      "birthDate": "1993-12-26",
+      "profilePicture": "",
+      "role": "collecteur"
+    },
+    {
+      "id": "72abfe1e-556f-4a8c-88be-6128683c1091",
+      "email": "rytagyb@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Nulla minima modi qu",
+      "lastName": "Vero hic magna paria",
+      "address": "Soluta reiciendis ma",
+      "phone": 7225415155,
+      "birthDate": "2002-02-16",
+      "profilePicture": "",
+      "role": "particulier"
+    }
+  ]
+}
