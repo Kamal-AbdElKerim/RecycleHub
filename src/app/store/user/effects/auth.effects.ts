@@ -3,15 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import {catchError, map, mergeMap, of, switchMap, tap} from 'rxjs';
-import * as AuthActions from './auth.actions';
-import { User } from '../../models/User';
+import * as AuthActions from '../actions/auth.actions';
+import { User } from '../../../models/User';
 import {
   deleteUser, deleteUserFailure,
   deleteUserSuccess,
   registerUser,
   registerUserFailure,
   registerUserSuccess,
-} from "./auth.actions";
+} from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {

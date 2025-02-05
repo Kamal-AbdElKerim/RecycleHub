@@ -5,9 +5,10 @@ import { takeUntil } from 'rxjs/operators';
 import { User } from "../../models/User";
 import { select, Store } from "@ngrx/store";
 import { Router } from "@angular/router";
-import { selectCurrentUser, selectUpdateError } from "../../store/user/auth.selectors";
-import { deleteUser, updateUser } from "../../store/user/auth.actions";
+import { selectCurrentUser, selectUpdateError } from "../../store/user/selectors/auth.selectors";
+import { deleteUser, updateUser } from "../../store/user/actions/auth.actions";
 import { NgIf } from "@angular/common";
+import {SweetAlertService} from "../../service/sweet-alert.service";
 
 @Component({
   selector: 'app-settings',
@@ -25,7 +26,7 @@ export class SettingsComponent  {
   settingsForm: FormGroup;
   currentUserId : string  =''
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store, private router: Router , private sweetAlertService: SweetAlertService) {
     this.currentUser$ = this.store.pipe(select(selectCurrentUser));
     this.updateError$ = this.store.pipe(select(selectUpdateError));
 
@@ -75,6 +76,7 @@ export class SettingsComponent  {
       }
 
       this.store.dispatch(updateUser({ user: updatedUser }));
+      this.sweetAlertService.successAlert('Success', 'Updated successfully!');
     }
   }
 

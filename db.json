@@ -34,6 +34,64 @@
       "birthDate": "1999-08-24",
       "profilePicture": "",
       "role": "particulier"
+    },
+    {
+      "email": "zurofunega@mailinator.com",
+      "firstName": "Omnis incididunt nat",
+      "lastName": "Culpa eaque sint cu",
+      "address": "In qui laborum Adip",
+      "phone": 4755555555,
+      "birthDate": "2003-09-28",
+      "role": "particulier",
+      "profilePicture": "",
+      "id": "90aeda3a-d4bb-4aef-8289-6bd241676a81"
+    }
+  ],
+  "collectes": [
+    {
+      "id": "a29f8eac-0f96-448a-adb3-5474daf1fd1b",
+      "type": [
+        "verre",
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 1111,
+      "adresse": "Pariatur Sed offici",
+      "date": "2006-09-26",
+      "horaire": "23:22",
+      "notes": "Ex et explicabo Quo",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "78aa7fd5-3b44-4779-865b-dc7b78bb2a4a",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 8989,
+      "adresse": "Praesentium ad porro",
+      "date": "2000-03-11",
+      "horaire": "08:18",
+      "notes": "Est eligendi cumque",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "43e8d935-2889-4a7f-becb-37b59194229c",
+      "type": [
+        "verre"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 4562,
+      "adresse": "Sunt ex id omnis mi",
+      "date": "1987-02-09",
+      "horaire": "21:53",
+      "notes": "Doloremque assumenda",
+      "status": "En attente",
+      "collecteurId": ""
     }
   ]
 }

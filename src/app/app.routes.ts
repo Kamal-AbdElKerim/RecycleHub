@@ -5,6 +5,7 @@ import {NotfoundComponent} from "./component/notfound/notfound.component";
 import {CollecteurComponent} from "./component/collecteur/collecteur.component";
 import {collecteurGuard} from "./Guards/collecteur.guard";
 import {particulierGuard} from "./Guards/particulier.guard";
+import {CollecteListComponent} from "./component/collecte-list/collecte-list.component";
 
 export const routes: Routes = [
   {
@@ -20,6 +21,11 @@ export const routes: Routes = [
   {
     path: 'particulier',
     loadComponent: () => import('./component/particulier/particulier.component').then(m => m.ParticulierComponent),
+    canActivate: [authGuard , particulierGuard]
+  },
+  {
+    path: 'collectes',
+    loadComponent: () => import('./component/collecte-list/collecte-list.component').then(m => m.CollecteListComponent),
     canActivate: [authGuard , particulierGuard]
   },
   {
