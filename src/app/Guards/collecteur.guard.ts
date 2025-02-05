@@ -1,21 +1,18 @@
-import {CanActivateFn, Router} from '@angular/router';
-import {inject} from "@angular/core";
-import {Store} from "@ngrx/store";
-import {selectCurrentUser} from "../store/user/auth.selectors";
-import {map} from "rxjs";
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { selectCurrentUser } from "../store/user/auth.selectors";
+import { map } from "rxjs";
+import { User } from "../models/User";
 
 export const collecteurGuard: CanActivateFn = (route, state) => {
-  const store = inject(Store);
   const router = inject(Router);
 
-  return store.select(selectCurrentUser).pipe(
-    map(user => {
-      if (user?.role === 'collecteur') {
-        return true;
-      } else {
-        router.navigate(['/login']);
-        return false;
-      }
-    })
-  );
+  const storedUser = localStorage.getItem('currentUser');
+  const data: User = storedUser ? JSON.parse(storedUser) : null;
+
+  if (data && data.role === 'collecteur') {
+    return true;
+  }
+  return false;
 };

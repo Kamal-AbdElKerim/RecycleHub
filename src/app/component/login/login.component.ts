@@ -33,13 +33,7 @@ export class LoginComponent {
     this.error$ = this.store.pipe(select(selectAuthError));
 
 
-    this.currentUser$.subscribe(user => {
-      if (user) {
-        console.log(user);
-        const role = user.role === "particulier" ? 'particulier' : 'collecteur';
-        this.router.navigate([role]);
-      }
-    });
+
   }
 
   onSubmit() {
@@ -48,6 +42,13 @@ export class LoginComponent {
 
       if (email && password) { // Ensure they are not null
         this.store.dispatch(loginUser({ email, password }));
+        this.currentUser$.subscribe(user => {
+          if (user) {
+            console.log(user);
+            const role = user.role === "particulier" ? 'particulier' : 'collecteur';
+            this.router.navigate([role]);
+          }
+        });
       }
     }
   }

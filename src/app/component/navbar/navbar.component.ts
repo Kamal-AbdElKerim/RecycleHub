@@ -33,6 +33,6 @@ export class NavbarComponent {
   }
   logout() : void {
     this.store.dispatch(logoutUser())
-    this.router.navigate(['/register']);
+    this.router.navigate(['/login']);
   }
 }

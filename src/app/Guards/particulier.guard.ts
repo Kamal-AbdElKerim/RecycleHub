@@ -12,10 +12,8 @@ export const particulierGuard: CanActivateFn = (route, state) => {
     map(user => {
       if (user?.role === 'particulier') {
         return true;
-      } else {
-        router.navigate(['/login']);
-        return false;
       }
+      return false;
     })
   );
 };

@@ -54,6 +54,20 @@ export class AuthEffects {
     )
   );
 
+  // Update User
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.updateUser),
+      mergeMap(({ user }) =>
+        this.http.put<User>(`${this.API_URL}/${user.id}`, user).pipe(
+          map((updatedUser) => AuthActions.updateUserSuccess({ user: updatedUser })),
+          catchError((error) => of(AuthActions.updateUserFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+
   // Login User
   loginUser$ = createEffect(() =>
     this.actions$.pipe(
@@ -74,16 +88,16 @@ export class AuthEffects {
 
 
 // Supprimer un utilisateur
-deleteUser$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(deleteUser),
-    mergeMap(({ userId }) =>
-      this.http.delete(`${this.API_URL}/${userId}`).pipe(
-        map(() => deleteUserSuccess()),
-        catchError((error) => of(deleteUserFailure({ error: error.message })))
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.deleteUser),
+      mergeMap(({ userId }) =>
+        this.http.delete(`http://localhost:3000/users/${userId}`).pipe(
+          map(() => AuthActions.deleteUserSuccess()),
+          catchError(error => of(AuthActions.deleteUserFailure({ error: error.message })))
+        )
       )
     )
-  )
-);
+  );
 
 }

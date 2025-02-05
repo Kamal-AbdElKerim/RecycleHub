@@ -42,13 +42,7 @@ export class RegisterComponent {
     this.error$ = this.store.pipe(select(selectAuthError));
 
 
-    this.currentUser$.subscribe(user => {
-      if (user) {
-        console.log(user);
-        const role = user.role === "particulier" ? 'particulier' : 'coo';
-        this.router.navigate([role]);
-      }
-    });
+
   }
 
   onSubmit() {
@@ -66,6 +60,13 @@ export class RegisterComponent {
         role: "particulier",
       };
       this.store.dispatch(registerUser({ user }));
+      this.currentUser$.subscribe(user => {
+        if (user) {
+          console.log(user);
+          const role = user.role === "particulier" ? 'particulier' : 'collecteur';
+          this.router.navigate([role]);
+        }
+      });
     }
   }
 

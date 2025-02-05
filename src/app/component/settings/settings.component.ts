@@ -5,8 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { User } from "../../models/User";
 import { select, Store } from "@ngrx/store";
 import { Router } from "@angular/router";
-import { selectCurrentUser } from "../../store/user/auth.selectors";
-import { deleteUser } from "../../store/user/auth.actions";
+import { selectCurrentUser, selectUpdateError } from "../../store/user/auth.selectors";
+import { deleteUser, updateUser } from "../../store/user/auth.actions";
 import { NgIf } from "@angular/common";
 
 @Component({
@@ -19,13 +19,15 @@ import { NgIf } from "@angular/common";
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
-export class SettingsComponent implements OnDestroy {
+export class SettingsComponent  {
   currentUser$: Observable<User | null>;
+  updateError$: Observable<string | null>;
   settingsForm: FormGroup;
-  private destroy$ = new Subject<void>();
+  currentUserId : string  =''
 
   constructor(private store: Store, private router: Router) {
     this.currentUser$ = this.store.pipe(select(selectCurrentUser));
+    this.updateError$ = this.store.pipe(select(selectUpdateError));
 
     this.settingsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,47 +35,64 @@ export class SettingsComponent implements OnDestroy {
       lastName: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
-      birthDate: new FormControl('', Validators.required)
+      birthDate: new FormControl('', Validators.required),
+      role: new FormControl(''), // Add the role field
+      profilePicture: new FormControl('')
     });
 
-    this.currentUser$.pipe(takeUntil(this.destroy$)).subscribe(user => {
+    this.currentUser$.subscribe(user => {
       if (user) {
         this.settingsForm.patchValue({
+          id: user.id,
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
           address: user.address,
           phone: user.phone,
-          birthDate: user.birthDate
+          birthDate: user.birthDate,
+          role: user.role,
+          profilePicture: user.profilePicture
+
         });
+        this.currentUserId = user.id;
       }
     });
+
   }
 
   updateProfile() {
     if (this.settingsForm.valid) {
-      console.log(this.settingsForm.value)
-      //this.store.dispatch(updateUser({ user: this.settingsForm.value }));
+      const updatedUser: User = {
+        ...this.settingsForm.value,
+        id: this.currentUserId
+      };
+
+      console.log("Updating user:", updatedUser);
+
+      if (!updatedUser.id) {
+        console.error("User ID is missing!");
+        return;
+      }
+
+      this.store.dispatch(updateUser({ user: updatedUser }));
     }
   }
 
+
   deleteAccount() {
-    const userId = this.settingsForm.get('id')?.value;
+    const userId = this.currentUserId;
 
     if (!userId) {
-      console.error("User ID not found!");
+      console.error("User ID is missing!");
       return;
     }
 
     if (confirm('Are you sure you want to delete your account?')) {
       this.store.dispatch(deleteUser({ userId }));
-      this.router.navigate(['/register']);
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['/login']);
     }
   }
 
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 }
