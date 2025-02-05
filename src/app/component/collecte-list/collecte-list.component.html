@@ -1,0 +1,78 @@
+<div class="container mt-4">
+  <h2>Collectes List</h2>
+
+  <div *ngIf="collectes$ | async as collectes; else loading">
+    <div *ngIf="collectes.length > 0; else noCollectes">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Poids</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Date</th>
+          <th scope="col">Horaire</th>
+          <th scope="col">Notes</th>
+          <th scope="col">Status</th>
+          <th scope="col">//</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let collecte of collectes">
+          <td>
+            <ul>
+              <li *ngFor="let type of collecte.type">{{ type }}</li>
+            </ul>
+          </td>
+          <td>
+            <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="number" [(ngModel)]="editingCollecte.poids" class="form-control" required />
+            <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.poids }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="text" [(ngModel)]="editingCollecte.adresse" class="form-control" required />
+            <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.adresse }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="date" [(ngModel)]="editingCollecte.date" class="form-control" required />
+            <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.date | date }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="time" [(ngModel)]="editingCollecte.horaire" class="form-control" required />
+            <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.horaire }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="text" [(ngModel)]="editingCollecte.notes" class="form-control" />
+            <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.notes || 'N/A' }}</span>
+          </td>
+
+          <td>{{ collecte.status }}</td>
+          <td>
+            @if (collecte.status === "En attente") {
+              <button *ngIf="editingCollecte?.id !== collecte.id" type="button" (click)="startEditing(collecte)" class="btn btn-success me-2">
+                Update
+              </button>
+              <button *ngIf="editingCollecte?.id === collecte.id" type="button" (click)="saveUpdate()" class="btn btn-primary me-2 mb-2">
+                Save
+              </button>
+              <button *ngIf="editingCollecte?.id === collecte.id" type="button" (click)="cancelEdit()" class="btn btn-secondary me-2 mb-2">
+                Cancel
+              </button>
+              <button type="button" (click)="deleteCollecte(collecte.id)" class="btn btn-danger">Delete</button>
+            }
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noCollectes>
+      <div class="alert alert-warning" role="alert">
+        No collectes found.
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #loading>
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </ng-template>
+</div>

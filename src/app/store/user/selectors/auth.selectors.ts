@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AuthState } from './auth.reducer';
+import { AuthState } from '../reducer/auth.reducer';
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
@@ -13,8 +13,16 @@ export const selectAllUsers = createSelector(
   (state) => state.users
 );
 
-// ✅ Add this selector for authentication errors
+// ✅ Selector for authentication errors
 export const selectAuthError = createSelector(
   selectAuthState,
   (state) => state.error
+);
+
+
+
+// ✅ Selector for update error message
+export const selectUpdateError = createSelector(
+  selectAuthState,
+  (state) => state.updateError
 );

@@ -1,52 +1,97 @@
 {
   "users": [
     {
-      "id": "88bcd2ab-c757-4d40-ad41-afe91b3a6ae2",
-      "email": "collecteur@gmail.com",
-      "password": "collecteur@gmail.com",
-      "firstName": "Consequatur molestia",
-      "lastName": "Dicta cupiditate sit",
-      "address": "Doloribus aliquid es",
-      "phone": 6694746222,
-      "birthDate": "1997-07-18",
+      "email": "collecteur2@gmail.com",
+      "firstName": "collecteur2",
+      "lastName": "Consequatur Dolor e",
+      "address": "Dolor praesentium un",
+      "phone": 5188888888,
+      "birthDate": "2024-08-06",
+      "role": "collecteur",
       "profilePicture": "",
-      "role": "collecteur"
+      "id": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8"
     },
     {
-      "id": "e6ab4ab8-c80e-4a5e-a20a-8344a881558a",
+      "id": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8",
       "email": "collecteur2@gmail.com",
       "password": "collecteur2@gmail.com",
-      "firstName": "Maxime quos tempor l",
-      "lastName": "Voluptatum doloremqu",
-      "address": "Reprehenderit consec",
-      "phone": 6694746223,
-      "birthDate": "2005-12-20",
+      "firstName": "Aliquam aut voluptat",
+      "lastName": "Consequatur Dolor e",
+      "address": "Dolor praesentium un",
+      "phone": 5188888888,
+      "birthDate": "2024-08-06",
       "profilePicture": "",
       "role": "collecteur"
     },
     {
-      "id": "805d061b-97a6-4965-bd0b-d8c18d880367",
-      "email": "collecteur3@gmail.com",
-      "password": "collecteur3@gmail.com",
-      "firstName": "Consequatur Ut temp",
-      "lastName": "Voluptate in odit er",
-      "address": "Qui nihil et consequ",
-      "phone": 6694746222,
-      "birthDate": "1993-12-26",
-      "profilePicture": "",
-      "role": "collecteur"
-    },
-    {
-      "id": "72abfe1e-556f-4a8c-88be-6128683c1091",
-      "email": "rytagyb@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "firstName": "Nulla minima modi qu",
-      "lastName": "Vero hic magna paria",
-      "address": "Soluta reiciendis ma",
-      "phone": 7225415155,
-      "birthDate": "2002-02-16",
+      "id": "7fa01eaf-1328-459e-8800-f16b1fcee81d",
+      "email": "kyce@mailinator.com",
+      "password": "kyce@mailinator.com",
+      "firstName": "Qui Nam exercitation",
+      "lastName": "Anim sint eum est q",
+      "address": "Libero tempora hic e",
+      "phone": 9588888888,
+      "birthDate": "1999-08-24",
       "profilePicture": "",
       "role": "particulier"
+    },
+    {
+      "email": "zurofunega@mailinator.com",
+      "firstName": "Omnis incididunt nat",
+      "lastName": "Culpa eaque sint cu",
+      "address": "In qui laborum Adip",
+      "phone": 4755555555,
+      "birthDate": "2003-09-28",
+      "role": "particulier",
+      "profilePicture": "",
+      "id": "90aeda3a-d4bb-4aef-8289-6bd241676a81"
+    }
+  ],
+  "collectes": [
+    {
+      "id": "a29f8eac-0f96-448a-adb3-5474daf1fd1b",
+      "type": [
+        "verre",
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 1111,
+      "adresse": "Pariatur Sed offici",
+      "date": "2006-09-26",
+      "horaire": "23:22",
+      "notes": "Ex et explicabo Quo",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "78aa7fd5-3b44-4779-865b-dc7b78bb2a4a",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 8989,
+      "adresse": "Praesentium ad porro",
+      "date": "2000-03-11",
+      "horaire": "08:18",
+      "notes": "Est eligendi cumque",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "43e8d935-2889-4a7f-becb-37b59194229c",
+      "type": [
+        "verre"
+      ],
+      "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
+      "poids": 4562,
+      "adresse": "Sunt ex id omnis mi",
+      "date": "1987-02-09",
+      "horaire": "21:53",
+      "notes": "Doloremque assumenda",
+      "status": "En attente",
+      "collecteurId": ""
     }
   ]
 }

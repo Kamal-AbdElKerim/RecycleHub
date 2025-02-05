@@ -7,8 +7,8 @@ import * as RequestsActions from '../../store/requests/requests.actions';
 import { v4 as uuidv4 } from 'uuid';
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AuthState} from "../../store/user/auth.reducer";
-import {selectAuthError} from "../../store/user/auth.selectors";
+import {AuthState} from "../../store/user/reducer/auth.reducer";
+import {selectAuthError} from "../../store/user/selectors/auth.selectors";
 
 @Component({
   selector: 'app-requests',

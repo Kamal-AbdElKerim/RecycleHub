@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {select, Store} from "@ngrx/store";
-import {logoutUser} from "../../store/user/auth.actions";
-import {selectCurrentUser} from "../../store/user/auth.selectors";
+import {logoutUser} from "../../store/user/actions/auth.actions";
+import {selectCurrentUser} from "../../store/user/selectors/auth.selectors";
 import {Observable} from "rxjs";
 import {User} from "../../models/User";
 
@@ -33,6 +33,6 @@ export class NavbarComponent {
   }
   logout() : void {
     this.store.dispatch(logoutUser())
-    this.router.navigate(['/register']);
+    this.router.navigate(['/login']);
   }
 }

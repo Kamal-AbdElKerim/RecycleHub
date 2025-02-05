@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import {catchError, map, mergeMap, of, switchMap} from 'rxjs';
-import * as AuthActions from './auth.actions';
-import { User } from '../../models/User';
-import {registerUser, registerUserFailure, registerUserSuccess} from "./auth.actions";
+import {catchError, map, mergeMap, of, switchMap, tap} from 'rxjs';
+import * as AuthActions from '../actions/auth.actions';
+import { User } from '../../../models/User';
+import {
+  deleteUser, deleteUserFailure,
+  deleteUserSuccess,
+  registerUser,
+  registerUserFailure,
+  registerUserSuccess,
+} from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -48,6 +54,20 @@ export class AuthEffects {
     )
   );
 
+  // Update User
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.updateUser),
+      mergeMap(({ user }) =>
+        this.http.put<User>(`${this.API_URL}/${user.id}`, user).pipe(
+          map((updatedUser) => AuthActions.updateUserSuccess({ user: updatedUser })),
+          catchError((error) => of(AuthActions.updateUserFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+
   // Login User
   loginUser$ = createEffect(() =>
     this.actions$.pipe(
@@ -65,4 +85,19 @@ export class AuthEffects {
       )
     )
   );
+
+
+// Supprimer un utilisateur
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.deleteUser),
+      mergeMap(({ userId }) =>
+        this.http.delete(`http://localhost:3000/users/${userId}`).pipe(
+          map(() => AuthActions.deleteUserSuccess()),
+          catchError(error => of(AuthActions.deleteUserFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
 }

@@ -1,1 +1,63 @@
-<p>particulier works!</p>
+<div class="container my-5">
+  <h2>Demande de Collecte</h2>
+  <form [formGroup]="collecteForm" (ngSubmit)="onSubmitForm()">
+    <!-- Type de déchet à recycler -->
+    <div class="mb-3">
+      <label for="type" class="form-label">Type de déchet à recycler</label>
+      <select class="form-select" id="type" formControlName="type" multiple>
+        <option value="plastique">Plastique</option>
+        <option value="verre">Verre</option>
+        <option value="papier">Papier</option>
+        <option value="métal">Métal</option>
+      </select>
+      <div *ngIf="collecteForm.get('type')?.invalid && collecteForm.get('type')?.touched" class="text-danger">
+        Veuillez choisir un type de déchet.
+      </div>
+    </div>
+
+    <!-- Poids estimé -->
+    <div class="mb-3">
+      <label for="poids" class="form-label">Poids estimé (en g)</label>
+      <input class="form-control" type="number" id="poids" formControlName="poids" min="1000">
+      <div *ngIf="poids?.invalid && poids?.touched" class="text-danger">
+        Le poids minimum est de 1000g.
+      </div>
+    </div>
+
+    <!-- Adresse de collecte -->
+    <div class="mb-3">
+      <label for="adresse" class="form-label">Adresse de collecte</label>
+      <input class="form-control" type="text" id="adresse" formControlName="adresse">
+      <div *ngIf="collecteForm.get('adresse')?.invalid && collecteForm.get('adresse')?.touched" class="text-danger">
+        L'adresse de collecte est obligatoire.
+      </div>
+    </div>
+
+    <!-- Date de collecte -->
+    <div class="mb-3">
+      <label for="date" class="form-label">Date de collecte</label>
+      <input class="form-control" type="date" id="date" formControlName="date">
+      <div *ngIf="date?.invalid && date?.touched" class="text-danger">
+        La date est obligatoire.
+      </div>
+    </div>
+
+    <!-- Horaire -->
+    <div class="mb-3">
+      <label for="horaire" class="form-label">Horaire de collecte</label>
+      <input class="form-control" type="time" id="horaire" formControlName="horaire">
+      <div *ngIf="horaire?.invalid && horaire?.touched" class="text-danger">
+        L'horaire est obligatoire.
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="mb-3">
+      <label for="notes" class="form-label">Notes supplémentaires (optionnel)</label>
+      <textarea class="form-control" id="notes" formControlName="notes" rows="3"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="collecteForm.invalid">Soumettre la demande</button>
+  </form>
+</div>

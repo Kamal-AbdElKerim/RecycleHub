@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <div class="card shadow-sm p-4">
+    <h3 class="text-center mb-3">Profile Settings</h3>
+
+    <div class="text-center mb-3">
+      <img src="" alt="Profile Picture" class="profile-pic">
+    </div>
+
+    <form [formGroup]="settingsForm" (ngSubmit)="updateProfile()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input id="firstName" type="text" class="form-control" formControlName="firstName">
+          <div *ngIf="settingsForm.get('firstName')?.invalid && settingsForm.get('firstName')?.touched" class="text-danger">
+            First name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input id="lastName" type="text" class="form-control" formControlName="lastName">
+          <div *ngIf="settingsForm.get('lastName')?.invalid && settingsForm.get('lastName')?.touched" class="text-danger">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+
+      <!--  <div class="mb-3">
+         <label for="email" class="form-label">Email</label>
+         <input id="email" type="email" class="form-control" formControlName="email">
+         <div *ngIf="settingsForm.get('email')?.invalid && settingsForm.get('email')?.touched" class="text-danger">
+           Valid email is required.
+         </div>
+       </div> -->
+
+       <div class="mb-3">
+         <label for="phone" class="form-label">Phone Number</label>
+         <input id="phone" type="text" class="form-control" formControlName="phone">
+         <div *ngIf="settingsForm.get('phone')?.invalid && settingsForm.get('phone')?.touched" class="text-danger">
+           Enter a valid phone number (10 digits).
+         </div>
+       </div>
+
+       <div class="mb-3">
+         <label for="address" class="form-label">Address</label>
+         <input id="address" type="text" class="form-control" formControlName="address">
+         <div *ngIf="settingsForm.get('address')?.invalid && settingsForm.get('address')?.touched" class="text-danger">
+           Address is required.
+         </div>
+       </div>
+
+       <!--  <div class="mb-3">
+           <label for="birthDate" class="form-label">Birth Date</label>
+           <input id="birthDate" type="date" class="form-control" formControlName="birthDate">
+           <div *ngIf="settingsForm.get('birthDate')?.invalid && settingsForm.get('birthDate')?.touched" class="text-danger">
+             Birth date is required.
+           </div>
+         </div>-->
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="settingsForm.invalid">Save Changes</button>
+      </form>
+
+      <hr>
+
+      <div class="text-center">
+        <button class="btn btn-danger w-100" (click)="deleteAccount()">Delete Account</button>
+      </div>
+    </div>
+  </div>

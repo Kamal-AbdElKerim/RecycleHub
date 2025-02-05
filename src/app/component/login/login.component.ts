@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {Route, Router} from "@angular/router";
-import {loginUser} from "../../store/user/auth.actions";
-import {selectAuthError, selectCurrentUser} from "../../store/user/auth.selectors";
+import {loginUser} from "../../store/user/actions/auth.actions";
+import {selectAuthError, selectCurrentUser} from "../../store/user/selectors/auth.selectors";
 import {Observable} from "rxjs";
 import {User} from "../../models/User";
 import {AsyncPipe, NgIf} from "@angular/common";
@@ -33,13 +33,7 @@ export class LoginComponent {
     this.error$ = this.store.pipe(select(selectAuthError));
 
 
-    this.currentUser$.subscribe(user => {
-      if (user) {
-        console.log(user);
-        const role = user.role === "particulier" ? 'particulier' : 'collecteur';
-        this.router.navigate([role]);
-      }
-    });
+
   }
 
   onSubmit() {
@@ -48,6 +42,13 @@ export class LoginComponent {
 
       if (email && password) { // Ensure they are not null
         this.store.dispatch(loginUser({ email, password }));
+        this.currentUser$.subscribe(user => {
+          if (user) {
+            console.log(user);
+            const role = user.role === "particulier" ? 'particulier' : 'collecteur';
+            this.router.navigate([role]);
+          }
+        });
       }
     }
   }

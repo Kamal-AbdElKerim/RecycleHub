@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { select, Store } from "@ngrx/store";
 import { Router } from "@angular/router";
-import { registerUser } from "../../store/user/auth.actions";
+import { registerUser } from "../../store/user/actions/auth.actions";
 import { v4 as uuidv4 } from 'uuid';
 import { User } from "../../models/User";
 import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
 import { Observable } from "rxjs";
-import { selectAuthError, selectCurrentUser } from "../../store/user/auth.selectors";
+import { selectAuthError, selectCurrentUser } from "../../store/user/selectors/auth.selectors";
 
 @Component({
   selector: 'app-register',
@@ -42,13 +42,7 @@ export class RegisterComponent {
     this.error$ = this.store.pipe(select(selectAuthError));
 
 
-    this.currentUser$.subscribe(user => {
-      if (user) {
-        console.log(user);
-        const role = user.role === "particulier" ? 'particulier' : 'coo';
-        this.router.navigate([role]);
-      }
-    });
+
   }
 
   onSubmit() {
@@ -66,6 +60,15 @@ export class RegisterComponent {
         role: "particulier",
       };
       this.store.dispatch(registerUser({ user }));
+      this.currentUser$.subscribe(user => {
+        if (user) {
+          console.log(user);
+          const role = user.role === "particulier" ? 'particulier' : 'collecteur';
+          this.router.navigate([role]);
+        }
+      });
     }
   }
+
+
 }

@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {selectCurrentUser} from "../store/user/auth.selectors";
+import {selectCurrentUser} from "../store/user/selectors/auth.selectors";
 import {map} from "rxjs";
 
 export const particulierGuard: CanActivateFn = (route, state) => {
@@ -12,10 +12,8 @@ export const particulierGuard: CanActivateFn = (route, state) => {
     map(user => {
       if (user?.role === 'particulier') {
         return true;
-      } else {
-        router.navigate(['/login']);
-        return false;
       }
+      return false;
     })
   );
 };
