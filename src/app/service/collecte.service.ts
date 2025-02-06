@@ -15,6 +15,10 @@ export class CollecteService {
     return this.http.get<Collecte[]>(this.API_URL);
   }
 
+  getCollectesById(id: string): Observable<Collecte[]> {
+    return this.http.get<Collecte[]>(`${this.API_URL}?CollecteId=${id}`);
+  }
+
   addCollecte(collecte: Collecte): Observable<Collecte> {
     console.log(collecte);
     return this.http.post<Collecte>(this.API_URL, collecte);

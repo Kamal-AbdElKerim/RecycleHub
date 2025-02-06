@@ -9,15 +9,16 @@ export class CollecteEffects {
   constructor(private actions$: Actions, private collecteService: CollecteService) {}
 
   loadCollectes$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(CollecteActions.loadCollectes),  // Action to trigger load
-      mergeMap(() =>
-        this.collecteService.getCollectes().pipe(  // Call the service to fetch data
-          map((collectes) => CollecteActions.loadCollectesSuccess({ collectes })),  // Dispatch success action
-          catchError((error) => of(CollecteActions.loadCollectesFailure({ error: error.message })))  // Handle errors
-        )
+      this.actions$.pipe(
+          ofType(CollecteActions.loadCollectes),
+          mergeMap(({ id }) =>
+              this.collecteService.getCollectesById(id).pipe(
+                  map((collectes) => CollecteActions.loadCollectesSuccess({ collectes }),
+                  catchError((error) => of(CollecteActions.loadCollectesFailure({ error: error.message })))
+              )
+          )
       )
-    )
+      )
   );
 
   addCollecte$ = createEffect(() =>

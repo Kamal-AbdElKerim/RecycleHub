@@ -45,6 +45,18 @@
       "role": "particulier",
       "profilePicture": "",
       "id": "90aeda3a-d4bb-4aef-8289-6bd241676a81"
+    },
+    {
+      "id": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
+      "email": "howom@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Praesentium quibusda",
+      "lastName": "Doloribus et beatae ",
+      "address": "Praesentium ad qui v",
+      "phone": 5188888888,
+      "birthDate": "1990-01-08",
+      "profilePicture": "",
+      "role": "particulier"
     }
   ],
   "collectes": [
@@ -56,7 +68,7 @@
         "métal"
       ],
       "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
-      "poids": 1111,
+      "poids": 9999,
       "adresse": "Pariatur Sed offici",
       "date": "2006-09-26",
       "horaire": "23:22",
@@ -71,7 +83,7 @@
         "métal"
       ],
       "CollecteId": "90aeda3a-d4bb-4aef-8289-6bd241676a81",
-      "poids": 8989,
+      "poids": 1,
       "adresse": "Praesentium ad porro",
       "date": "2000-03-11",
       "horaire": "08:18",
@@ -90,6 +102,65 @@
       "date": "1987-02-09",
       "horaire": "21:53",
       "notes": "Doloremque assumenda",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "2880198f-4864-49b9-aeb0-4c1963ea02ce",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
+      "poids": 6059,
+      "adresse": "Voluptate rem pariat",
+      "date": "1988-09-21",
+      "horaire": "15:36",
+      "notes": "Rerum molestiae unde",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "7e9afefc-ff8d-48d0-a35e-b40cc6352c70",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
+      "poids": 2000,
+      "adresse": "Culpa esse rerum pla",
+      "date": "2018-05-26",
+      "horaire": "14:31",
+      "notes": "Autem nihil recusand",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "a018769b-eb92-43d7-b7ff-fceeb3a23e4c",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
+      "poids": 1000,
+      "adresse": "Ut ut rem doloribus ",
+      "date": "1980-03-12",
+      "horaire": "08:41",
+      "notes": "Sunt harum enim ali",
+      "status": "Validée",
+      "collecteurId": ""
+    },
+    {
+      "id": "406eeef0-1047-4967-aada-31c9e515878b",
+      "type": [
+        "verre"
+      ],
+      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
+      "poids": 1500,
+      "adresse": "Enim aut adipisci ve",
+      "date": "2023-10-07",
+      "horaire": "07:40",
+      "notes": "Dolor laborum Dolor",
       "status": "En attente",
       "collecteurId": ""
     }

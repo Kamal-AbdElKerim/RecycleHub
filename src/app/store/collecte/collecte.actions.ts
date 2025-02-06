@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Collecte } from '../../models/collecte.model';
 
-export const loadCollectes = createAction('[Collecte] Load Collectes');
+export const loadCollectes = createAction('[Collecte] Load Collectes', props<{ id: string }>());
 export const loadCollectesSuccess = createAction('[Collecte] Load Collectes Success', props<{ collectes: Collecte[] }>());
 export const loadCollectesFailure = createAction('[Collecte] Load Collectes Failure', props<{ error: string }>());
 

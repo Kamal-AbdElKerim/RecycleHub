@@ -3,8 +3,8 @@ import {select, Store} from "@ngrx/store";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Collecte} from "../../models/collecte.model";
 import {NgIf} from "@angular/common";
-import {addCollecte} from "../../store/collecte/collecte.actions";
-import {Observable} from "rxjs";
+import {addCollecte, loadCollectes} from "../../store/collecte/collecte.actions";
+import {Observable, take} from "rxjs";
 import {User} from "../../models/User";
 import {selectCurrentUser} from "../../store/user/selectors/auth.selectors";
 import {v4 as uuidv4} from "uuid";
@@ -33,6 +33,8 @@ export class ParticulierComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store , private router: Router , private sweetAlertService: SweetAlertService) {
     this.currentUser$ = this.store.pipe(select(selectCurrentUser));
     this.currentUser$.subscribe(currentUser => {this.AuthId = currentUser?.id ? currentUser?.id : ""});
+    this.store.dispatch(loadCollectes({ id : this.AuthId}));
+    this.collectes$ = this.store.select(selectAllCollectes);
   }
 
 
@@ -47,7 +49,6 @@ export class ParticulierComponent implements OnInit {
       status: ['En attente', Validators.required], // Default to 'En attente'
       collecteurId: [0, Validators.required], // Collecteur ID can be a dynamic value based on the logged-in user
     });
-    this.collectes$ = this.store.select(selectAllCollectes);
   }
 
   // Custom validator for date
@@ -63,32 +64,63 @@ export class ParticulierComponent implements OnInit {
       return;
     }
 
-    const formData = this.collecteForm.value;
-    const collecte: Collecte = {
-      id: uuidv4(),
-      type: formData.type,
-      CollecteId: this.AuthId,
-      poids: formData.poids,
-      adresse: formData.adresse,
-      date: formData.date,
-      horaire: formData.horaire,
-      notes: formData.notes || '',
-      status: formData.status,
-      collecteurId: "",
-    };
+    this.collectes$.pipe(take(1)).subscribe((collectes) => {
+      // Filter collectes where status is "En attente" or "En cours"
+      const userCollectes = collectes.filter(
+        (c) => c.CollecteId === this.AuthId && (c.status === "En attente" || c.status === "En cours")
+      );
 
-    this.store.dispatch(addCollecte({ collecte }));
+      // Count pending collectes
+      const pendingCount = userCollectes.length;
 
-    this.collecteForm.reset();
+      // Calculate total weight in grams
+      const totalWeight = userCollectes.reduce((sum, c) => sum + c.poids, 0);
 
+      // Get form data
+      const formData = this.collecteForm.value;
+      const newCollecteWeight = formData.poids; // Assume poids is in grams
 
-    this.collecteForm.patchValue({
-      status: 'En attente',
-      collecteurId: 0
+      // Business Rules: Max 3 pending requests and max 10,000g (10kg) total weight
+      if (pendingCount >= 3) {
+        this.sweetAlertService.errorAlert("Error", "You cannot have more than 3 pending collectes.");
+        return;
+      }
+
+      if (totalWeight + newCollecteWeight > 10000) { // 10,000g = 10kg
+        this.sweetAlertService.errorAlert("Error", "Total collecte weight cannot exceed 10kg (10,000g).");
+        return;
+      }
+
+      // Create collecte object
+      const collecte: Collecte = {
+        id: uuidv4(),
+        type: formData.type,
+        CollecteId: this.AuthId,
+        poids: formData.poids, // Keep it in grams
+        adresse: formData.adresse,
+        date: formData.date,
+        horaire: formData.horaire,
+        notes: formData.notes || '',
+        status: formData.status,
+        collecteurId: "",
+      };
+
+      // Dispatch action
+      this.store.dispatch(addCollecte({ collecte }));
+
+      // Reset form
+      this.collecteForm.reset();
+
+      this.collecteForm.patchValue({
+        status: 'En attente',
+        collecteurId: 0
+      });
+
+      this.sweetAlertService.successAlert("Success", "Collecte added successfully!");
     });
-
-    this.sweetAlertService.successAlert("Success", "Collecte added successfully!");
   }
+
+
 
   get poids() {
     return this.collecteForm.get('poids');
