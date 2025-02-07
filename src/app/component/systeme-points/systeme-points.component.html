@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Système de Points</h2>
+
+  <!-- Display Total Points -->
+  <div class="alert alert-success text-center">
+    Total Points Acquis : <strong>{{ totalPoints }}</strong>
+  </div>
+
+  <div *ngIf="totalPoints > 0" class="alert alert-info text-center mt-4">
+    {{ convertPointsToVoucher() }}
+  </div>
+</div>
