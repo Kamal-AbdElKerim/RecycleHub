@@ -1,10 +1,11 @@
 {
   "users": [
     {
-      "email": "collecteur2@gmail.com",
-      "firstName": "collecteur2",
+      "email": "collecteur3@gmail.com",
+      "firstName": "collecteur33",
       "lastName": "Consequatur Dolor e",
-      "address": "Dolor praesentium un",
+      "password": "collecteur3@gmail.com",
+      "address": "safi",
       "phone": 5188888888,
       "birthDate": "2024-08-06",
       "role": "collecteur",
@@ -17,7 +18,7 @@
       "password": "collecteur2@gmail.com",
       "firstName": "Aliquam aut voluptat",
       "lastName": "Consequatur Dolor e",
-      "address": "Dolor praesentium un",
+      "address": "casa",
       "phone": 5188888888,
       "birthDate": "2024-08-06",
       "profilePicture": "",
@@ -55,6 +56,30 @@
       "address": "Praesentium ad qui v",
       "phone": 5188888888,
       "birthDate": "1990-01-08",
+      "profilePicture": "",
+      "role": "particulier"
+    },
+    {
+      "email": "lewybaxy@mailinator.com",
+      "firstName": "Molestias voluptatib",
+      "lastName": "Id mollit deleniti ",
+      "password": "lewybaxy@mailinator.com",
+      "address": "Modi quod at nihil d",
+      "phone": 1255555555,
+      "birthDate": "2019-02-19",
+      "role": "particulier",
+      "profilePicture": "",
+      "id": "675a2152-e6fc-4a4b-8ce2-fa300f3a6178"
+    },
+    {
+      "id": "aa0e2300-ba1a-4a89-a3c4-439eedae86dd",
+      "email": "kaquve@mailinator.com",
+      "password": "kaquve@mailinator.com",
+      "firstName": "Ea distinctio Quisq",
+      "lastName": "Voluptatem Laborios",
+      "address": "Odit enim elit et l",
+      "phone": 9658555555,
+      "birthDate": "1973-11-08",
       "profilePicture": "",
       "role": "particulier"
     }
@@ -112,26 +137,11 @@
         "métal"
       ],
       "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
-      "poids": 6059,
+      "poids": 1000,
       "adresse": "Voluptate rem pariat",
       "date": "1988-09-21",
       "horaire": "15:36",
       "notes": "Rerum molestiae unde",
-      "status": "En attente",
-      "collecteurId": ""
-    },
-    {
-      "id": "7e9afefc-ff8d-48d0-a35e-b40cc6352c70",
-      "type": [
-        "papier",
-        "métal"
-      ],
-      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
-      "poids": 2000,
-      "adresse": "Culpa esse rerum pla",
-      "date": "2018-05-26",
-      "horaire": "14:31",
-      "notes": "Autem nihil recusand",
       "status": "En attente",
       "collecteurId": ""
     },
@@ -143,12 +153,12 @@
       ],
       "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
       "poids": 1000,
-      "adresse": "Ut ut rem doloribus ",
+      "adresse": "safi",
       "date": "1980-03-12",
       "horaire": "08:41",
       "notes": "Sunt harum enim ali",
       "status": "Validée",
-      "collecteurId": ""
+      "collecteurId": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8"
     },
     {
       "id": "406eeef0-1047-4967-aada-31c9e515878b",
@@ -161,6 +171,35 @@
       "date": "2023-10-07",
       "horaire": "07:40",
       "notes": "Dolor laborum Dolor",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "d3160bfd-dadb-4cd4-bb8d-9dd9927bca23",
+      "type": [
+        "métal"
+      ],
+      "CollecteId": "7fa01eaf-1328-459e-8800-f16b1fcee81d",
+      "poids": 9300,
+      "adresse": "safi",
+      "date": "1972-04-28",
+      "horaire": "03:24",
+      "notes": "Expedita voluptatem ",
+      "status": "Validée",
+      "collecteurId": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8"
+    },
+    {
+      "id": "5b108099-e9e2-4639-b6a5-766c8cdc287f",
+      "type": [
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "aa0e2300-ba1a-4a89-a3c4-439eedae86dd",
+      "poids": 2285,
+      "adresse": "Dolor Nam libero exe",
+      "date": "1980-07-06",
+      "horaire": "17:29",
+      "notes": "Magni exercitationem",
       "status": "En attente",
       "collecteurId": ""
     }

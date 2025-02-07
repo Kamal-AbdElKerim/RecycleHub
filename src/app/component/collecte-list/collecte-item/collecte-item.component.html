@@ -1,0 +1,112 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+      <!-- Type Column -->
+      <div>
+        <div class="d-flex flex-wrap gap-2">
+          <span *ngFor="let type of collecte.type" class="badge bg-primary">
+            {{ type }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Actions Column -->
+      <div>
+        <button *ngIf="!editingCollecte"
+                type="button" (click)="startEditing()"
+                class="btn btn-success btn-sm me-1">
+          Update
+        </button>
+
+        <button *ngIf="editingCollecte"
+                type="button" (click)="saveUpdate()"
+                class="btn btn-primary btn-sm me-1">
+          Save
+        </button>
+
+        <button *ngIf="editingCollecte"
+                type="button" (click)="cancelEdit()"
+                class="btn btn-secondary btn-sm me-1">
+          Cancel
+        </button>
+
+        <button type="button" (click)="onDelete.emit(collecte.id)"
+                class="btn btn-danger btn-sm">
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <!-- Poids Column -->
+      <div class="col-md-4">
+        <strong>Poids:</strong>
+        <input *ngIf="editingCollecte && editingCollecte.id === collecte.id"
+               type="number" [(ngModel)]="editingCollecte.poids"
+               class="form-control" required />
+        <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">
+          {{ collecte.poids }} kg
+        </span>
+        @if (errorMessage) {
+          <span class="text-danger">{{errorMessage}}</span>
+        }
+      </div>
+
+      <!-- Adresse Column -->
+      <div class="col-md-4">
+        <strong>Adresse:</strong>
+        <input *ngIf="editingCollecte && editingCollecte.id === collecte.id"
+               type="text" [(ngModel)]="editingCollecte.adresse"
+               class="form-control" required />
+        <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">
+          {{ collecte.adresse }}
+        </span>
+      </div>
+
+      <!-- Date Column -->
+      <div class="col-md-4">
+        <strong>Date:</strong>
+        <input *ngIf="editingCollecte && editingCollecte.id === collecte.id"
+               type="date" [(ngModel)]="editingCollecte.date"
+               class="form-control" required />
+        <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">
+          {{ collecte.date | date }}
+        </span>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <!-- Horaire Column -->
+      <div class="col-md-4">
+        <strong>Horaire:</strong>
+        <input *ngIf="editingCollecte && editingCollecte.id === collecte.id"
+               type="time" [(ngModel)]="editingCollecte.horaire"
+               class="form-control" required />
+        <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">
+          {{ collecte.horaire }}
+        </span>
+      </div>
+
+      <!-- Notes Column -->
+      <div class="col-md-4">
+        <strong>Notes:</strong>
+        <input *ngIf="editingCollecte && editingCollecte.id === collecte.id"
+               type="text" [(ngModel)]="editingCollecte.notes"
+               class="form-control" />
+        <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">
+          {{ collecte.notes || 'N/A' }}
+        </span>
+      </div>
+
+      <!-- Status Column -->
+      <div class="col-md-4 text-center">
+        <strong>Status:</strong>
+        <span class="badge bg-info">
+          {{ collecte.status }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

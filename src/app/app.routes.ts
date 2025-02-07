@@ -6,6 +6,8 @@ import {CollecteurComponent} from "./component/collecteur/collecteur.component";
 import {collecteurGuard} from "./Guards/collecteur.guard";
 import {particulierGuard} from "./Guards/particulier.guard";
 import {CollecteListComponent} from "./component/collecte-list/collecte-list.component";
+import {CollecteurListComponent} from "./component/collecteur-list/collecteur-list.component";
+import {SystemePointsComponent} from "./component/systeme-points/systeme-points.component";
 
 export const routes: Routes = [
   {
@@ -29,8 +31,18 @@ export const routes: Routes = [
     canActivate: [authGuard , particulierGuard]
   },
   {
+    path: 'SystemePoints',
+    loadComponent: () => import('./component/systeme-points/systeme-points.component').then(m => m.SystemePointsComponent),
+    canActivate: [authGuard , particulierGuard]
+  },
+  {
     path: 'collecteur',
     loadComponent: () => import('./component/collecteur/collecteur.component').then(m => m.CollecteurComponent),
+    canActivate: [authGuard , collecteurGuard]
+  },
+  {
+    path: 'CollecteurList',
+    loadComponent: () => import('./component/collecteur-list/collecteur-list.component').then(m => m.CollecteurListComponent),
     canActivate: [authGuard , collecteurGuard]
   },
   {

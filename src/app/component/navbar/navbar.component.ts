@@ -17,6 +17,7 @@ import {User} from "../../models/User";
 })
 export class NavbarComponent {
   currentUser$: Observable<User | null>;
+  user! : User;
   isLoggedIn: boolean = false;
 
   constructor(private store: Store, private router: Router) {
@@ -25,6 +26,7 @@ export class NavbarComponent {
     this.currentUser$.subscribe(user => {
       if (user) {
         this.isLoggedIn = true ;
+        this.user = user;
       }else {
         this.isLoggedIn = false ;
       }

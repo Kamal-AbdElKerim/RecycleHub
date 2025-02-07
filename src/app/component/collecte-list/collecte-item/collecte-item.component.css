@@ -1,0 +1,32 @@
+/* Ensure table is responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Properly format the Type column */
+td ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Ensure buttons are aligned */
+td .btn {
+  min-width: 70px;
+}
+
+/* Limit column width */
+th, td {
+  white-space: nowrap;
+  text-align: center;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}

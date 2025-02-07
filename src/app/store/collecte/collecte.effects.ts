@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as CollecteActions from './collecte.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import {CollecteService} from "../../service/collecte.service";
+import {loadCollectesByCity, loadCollectesByCollecteurId} from "./collecte.actions";
 
 @Injectable()
 export class CollecteEffects {
@@ -20,6 +21,32 @@ export class CollecteEffects {
       )
       )
   );
+
+    loadCollectesByCity$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(CollecteActions.loadCollectesByCity),
+            mergeMap(({ address }) =>
+                this.collecteService.getCollectesByAddress(address).pipe(
+                    map((collectes) => CollecteActions.loadCollectesSuccess({ collectes }),
+                        catchError((error) => of(CollecteActions.loadCollectesFailure({ error: error.message })))
+                    )
+                )
+            )
+        )
+    );
+
+    loadCollectesByCollecteurId$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(CollecteActions.loadCollectesByCollecteurId),
+            mergeMap(({ id }) =>
+                this.collecteService.getCollectesByCollecteurId(id).pipe(
+                    map((collectes) => CollecteActions.loadCollectesSuccess({ collectes }),
+                        catchError((error) => of(CollecteActions.loadCollectesFailure({ error: error.message })))
+                    )
+                )
+            )
+        )
+    );
 
   addCollecte$ = createEffect(() =>
     this.actions$.pipe(

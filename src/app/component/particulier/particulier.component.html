@@ -45,10 +45,12 @@
     <!-- Horaire -->
     <div class="mb-3">
       <label for="horaire" class="form-label">Horaire de collecte</label>
-      <input class="form-control" type="time" id="horaire" formControlName="horaire">
+      <input class="form-control" type="time" id="horaire" formControlName="horaire" >
       <div *ngIf="horaire?.invalid && horaire?.touched" class="text-danger">
         L'horaire est obligatoire.
       </div>
+
+
     </div>
 
     <!-- Notes -->
