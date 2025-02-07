@@ -1,10 +1,11 @@
 {
   "users": [
     {
-      "email": "collecteur2@gmail.com",
-      "firstName": "collecteur2",
+      "email": "collecteur3@gmail.com",
+      "firstName": "collecteur3",
       "lastName": "Consequatur Dolor e",
-      "address": "Dolor praesentium un",
+      "password": "collecteur3@gmail.com",
+      "address": "safi",
       "phone": 5188888888,
       "birthDate": "2024-08-06",
       "role": "collecteur",
@@ -17,7 +18,7 @@
       "password": "collecteur2@gmail.com",
       "firstName": "Aliquam aut voluptat",
       "lastName": "Consequatur Dolor e",
-      "address": "Dolor praesentium un",
+      "address": "casa",
       "phone": 5188888888,
       "birthDate": "2024-08-06",
       "profilePicture": "",
@@ -112,26 +113,11 @@
         "métal"
       ],
       "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
-      "poids": 6059,
+      "poids": 1000,
       "adresse": "Voluptate rem pariat",
       "date": "1988-09-21",
       "horaire": "15:36",
       "notes": "Rerum molestiae unde",
-      "status": "En attente",
-      "collecteurId": ""
-    },
-    {
-      "id": "7e9afefc-ff8d-48d0-a35e-b40cc6352c70",
-      "type": [
-        "papier",
-        "métal"
-      ],
-      "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
-      "poids": 2000,
-      "adresse": "Culpa esse rerum pla",
-      "date": "2018-05-26",
-      "horaire": "14:31",
-      "notes": "Autem nihil recusand",
       "status": "En attente",
       "collecteurId": ""
     },
@@ -143,12 +129,12 @@
       ],
       "CollecteId": "c56de07f-750c-40a3-91c7-36f15ba6cb5d",
       "poids": 1000,
-      "adresse": "Ut ut rem doloribus ",
+      "adresse": "safi",
       "date": "1980-03-12",
       "horaire": "08:41",
       "notes": "Sunt harum enim ali",
       "status": "Validée",
-      "collecteurId": ""
+      "collecteurId": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8"
     },
     {
       "id": "406eeef0-1047-4967-aada-31c9e515878b",

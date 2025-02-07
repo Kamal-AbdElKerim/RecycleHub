@@ -1,6 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {Collecte} from "../../models/collecte.model";
 import {NgIf} from "@angular/common";
 import {addCollecte, loadCollectes} from "../../store/collecte/collecte.actions";
@@ -43,21 +51,16 @@ export class ParticulierComponent implements OnInit {
       type: ['', Validators.required],
       poids: ['', [Validators.required, Validators.min(1000)]],
       adresse: ['', Validators.required],
-      date: ['', Validators.required],
-      horaire: ['', Validators.required],
+      date: ['', [Validators.required]], // Apply date validation
+      horaire: ['', Validators.required], // Keep required validation for horaire
       notes: [''],
       status: ['En attente', Validators.required], // Default to 'En attente'
-      collecteurId: [0, Validators.required], // Collecteur ID can be a dynamic value based on the logged-in user
+      collecteurId: [0, Validators.required], // Default value for collecteurId
     });
   }
 
-  // Custom validator for date
-  dateValidator(control: any) {
-    const date = new Date(control.value);
-    const minDate = new Date('2025-02-05T09:00');
-    const maxDate = new Date('2025-02-05T18:00');
-    return date >= minDate && date <= maxDate ? null : { invalidDate: true };
-  }
+
+
 
   onSubmitForm(): void {
     if (this.collecteForm.invalid) {

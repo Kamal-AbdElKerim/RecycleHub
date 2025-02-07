@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Collectes List</h2>
+  <h2>Mon Collectes</h2>
 
 
   <div *ngIf="collectes$ | async as collectes; else loading">
@@ -55,9 +55,22 @@
             </ul>
           </td>
           <td>
-            <button *ngIf="collecte.status === 'En attente'" class="btn btn-primary" (click)="OccupeeCollecte(collecte)">
-              Occupée
-            </button>
+
+            @if (collecte.status === 'Occupée') {
+              <button class="btn btn-success" (click)="updateStatus(collecte, 'En cours')">
+                En cours Collection
+              </button>
+            }
+
+            @if (collecte.status === 'En cours') {
+              <button class="btn btn-success me-2" (click)="updateStatus(collecte, 'Validée')">
+                Validée
+              </button>
+              <button class="btn btn-danger" (click)="updateStatus(collecte, 'Rejetée')">
+                Rejetée
+              </button>
+            }
+
           </td>
 
         </tr>
@@ -77,5 +90,3 @@
     </div>
   </ng-template>
 </div>
-
-

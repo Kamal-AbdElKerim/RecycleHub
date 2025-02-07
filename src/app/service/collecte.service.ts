@@ -19,6 +19,14 @@ export class CollecteService {
     return this.http.get<Collecte[]>(`${this.API_URL}?CollecteId=${id}`);
   }
 
+  getCollectesByAddress(address: string): Observable<Collecte[]> {
+    return this.http.get<Collecte[]>(`${this.API_URL}?adresse=${address}&status=En attente`);
+  }
+
+  getCollectesByCollecteurId(id: string): Observable<Collecte[]> {
+    return this.http.get<Collecte[]>(`${this.API_URL}?collecteurId=${id}`);
+  }
+
   addCollecte(collecte: Collecte): Observable<Collecte> {
     console.log(collecte);
     return this.http.post<Collecte>(this.API_URL, collecte);

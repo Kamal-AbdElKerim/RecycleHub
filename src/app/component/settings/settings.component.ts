@@ -31,12 +31,13 @@ export class SettingsComponent  {
     this.updateError$ = this.store.pipe(select(selectUpdateError));
 
     this.settingsForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl(''),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
+      password: new FormControl(''),
       address: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
-      birthDate: new FormControl('', Validators.required),
+      birthDate: new FormControl(''),
       role: new FormControl(''), // Add the role field
       profilePicture: new FormControl('')
     });
@@ -48,6 +49,7 @@ export class SettingsComponent  {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          password : user.password,
           address: user.address,
           phone: user.phone,
           birthDate: user.birthDate,
@@ -89,12 +91,17 @@ export class SettingsComponent  {
       return;
     }
 
-    if (confirm('Are you sure you want to delete your account?')) {
-      this.store.dispatch(deleteUser({ userId }));
-      localStorage.removeItem('currentUser');
-      this.router.navigate(['/login']);
-    }
+    this.sweetAlertService.confirmDialog(
+      'Are you sure?',
+      'Do you really want to delete your account? This action cannot be undone.',
+      () => {
+        this.store.dispatch(deleteUser({ userId }));
+        localStorage.removeItem('currentUser');
+        this.router.navigate(['/login']);
+      }
+    );
   }
+
 
 
 }

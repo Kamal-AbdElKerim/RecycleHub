@@ -5,6 +5,11 @@ export const loadCollectes = createAction('[Collecte] Load Collectes', props<{ i
 export const loadCollectesSuccess = createAction('[Collecte] Load Collectes Success', props<{ collectes: Collecte[] }>());
 export const loadCollectesFailure = createAction('[Collecte] Load Collectes Failure', props<{ error: string }>());
 
+export const loadCollectesByCity = createAction('[Collecte] Load Collectes By Address', props<{ address: string }>());
+
+export const loadCollectesByCollecteurId = createAction('[Collecte] Load Collectes By CollecteurId', props<{ id: string }>());
+
+
 export const addCollecte = createAction('[Collecte] Add Collecte', props<{ collecte: Collecte }>());
 export const addCollecteSuccess = createAction('[Collecte] Add Collecte Success', props<{ collecte: Collecte }>());
 export const addCollecteFailure = createAction('[Collecte] Add Collecte Failure', props<{ error: string }>());
