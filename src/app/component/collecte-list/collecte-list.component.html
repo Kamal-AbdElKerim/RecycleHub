@@ -1,5 +1,8 @@
 <div class="container mt-4">
   <h2>Collectes List</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
 
   <div *ngIf="collectes$ | async as collectes; else loading">
     <div *ngIf="collectes.length > 0; else noCollectes">
@@ -23,6 +26,7 @@
               <li *ngFor="let type of collecte.type">{{ type }}</li>
             </ul>
           </td>
+
           <td>
             <input *ngIf="editingCollecte && editingCollecte.id === collecte.id" type="number" [(ngModel)]="editingCollecte.poids" class="form-control" required />
             <span *ngIf="!editingCollecte || editingCollecte.id !== collecte.id">{{ collecte.poids }}</span>
