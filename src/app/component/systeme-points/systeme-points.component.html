@@ -5,8 +5,9 @@
   <div class="alert alert-success text-center">
     Total Points Acquis : <strong>{{ totalPoints }}</strong>
   </div>
+  <button (click)="convertPointsToVoucher()" class="btn btn-warning">Convert Points To Voucher</button>
 
-  <div *ngIf="totalPoints > 0" class="alert alert-info text-center mt-4">
+  <div *ngIf="convertPoints" class="alert alert-info text-center mt-4">
     {{ convertPointsToVoucher() }}
   </div>
 </div>

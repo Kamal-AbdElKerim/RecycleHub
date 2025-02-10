@@ -82,6 +82,18 @@
       "birthDate": "1973-11-08",
       "profilePicture": "",
       "role": "particulier"
+    },
+    {
+      "id": "9c6325f1-bfbe-4f6c-9ff4-88053d42cc7d",
+      "email": "kamal@gmail.com",
+      "password": "kamal@gmail.com",
+      "firstName": "Kamal",
+      "lastName": "Abdelkerim",
+      "address": "N°37, Bloc 5, Hay Riad Safi",
+      "phone": 6372692825,
+      "birthDate": "2025-02-10",
+      "profilePicture": "",
+      "role": "particulier"
     }
   ],
   "collectes": [
@@ -200,6 +212,53 @@
       "date": "1980-07-06",
       "horaire": "17:29",
       "notes": "Magni exercitationem",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "288be709-ac78-4c1e-81dc-39e7035d0bd7",
+      "type": [
+        "verre",
+        "papier"
+      ],
+      "CollecteId": "5ee97d68-1eec-4830-bac0-e5a06a24e20d",
+      "poids": 1000,
+      "adresse": "safi",
+      "date": "2016-10-27",
+      "horaire": "12:21",
+      "notes": "Quis proident incid",
+      "status": "Validée",
+      "collecteurId": "bf466b6d-517d-4e3c-a7d3-4ce054c743a8"
+    },
+    {
+      "id": "360ee7d7-8a06-4b02-a718-4cb3c93e84b9",
+      "type": [
+        "verre",
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "5ee97d68-1eec-4830-bac0-e5a06a24e20d",
+      "poids": 7674,
+      "adresse": "Itaque labore nulla ",
+      "date": "1980-11-14",
+      "horaire": "16:12",
+      "notes": "In ut pariatur Obca",
+      "status": "En attente",
+      "collecteurId": ""
+    },
+    {
+      "id": "d1d30ee9-6b00-4ca2-ac9d-6b2b96d1acd4",
+      "type": [
+        "verre",
+        "papier",
+        "métal"
+      ],
+      "CollecteId": "5ee97d68-1eec-4830-bac0-e5a06a24e20d",
+      "poids": 3741,
+      "adresse": "Dolor quia dolor fac",
+      "date": "2013-07-13",
+      "horaire": "19:22",
+      "notes": "Voluptatem Possimus",
       "status": "En attente",
       "collecteurId": ""
     }

@@ -66,7 +66,7 @@ export class CollecteEffects {
       ofType(CollecteActions.deleteCollecte),
       mergeMap(({ id }) =>
         this.collecteService.deleteCollecte(id).pipe(
-          map(() => CollecteActions.deleteCollecteSuccess({ id })),  // Dispatch success with deleted ID
+          map(() => CollecteActions.deleteCollecteSuccess({ id })),
           catchError(error => of(CollecteActions.deleteCollecteFailure({ error: error.message })))  // Handle errors
         )
       )

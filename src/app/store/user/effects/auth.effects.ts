@@ -15,7 +15,7 @@ import {
 
 @Injectable()
 export class AuthEffects {
-  private API_URL = 'http://localhost:3000/users'; // JSON Server URL
+  private API_URL = 'http://localhost:3000/users';
 
   constructor(private actions$: Actions, private http: HttpClient, private store: Store) {}
 

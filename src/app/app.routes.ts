@@ -5,9 +5,7 @@ import {NotfoundComponent} from "./component/notfound/notfound.component";
 import {CollecteurComponent} from "./component/collecteur/collecteur.component";
 import {collecteurGuard} from "./Guards/collecteur.guard";
 import {particulierGuard} from "./Guards/particulier.guard";
-import {CollecteListComponent} from "./component/collecte-list/collecte-list.component";
-import {CollecteurListComponent} from "./component/collecteur-list/collecteur-list.component";
-import {SystemePointsComponent} from "./component/systeme-points/systeme-points.component";
+
 
 export const routes: Routes = [
   {

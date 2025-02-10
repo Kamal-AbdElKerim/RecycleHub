@@ -38,7 +38,7 @@ export class SettingsComponent  {
       address: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
       birthDate: new FormControl(''),
-      role: new FormControl(''), // Add the role field
+      role: new FormControl(''),
       profilePicture: new FormControl('')
     });
 

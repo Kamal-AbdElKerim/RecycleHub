@@ -36,7 +36,7 @@ export class ParticulierComponent implements OnInit {
   currentUser$: Observable<User | null>;
   AuthId: string = ""
 
-  collectes$!: Observable<Collecte[]>;  // Observable to hold the collectes
+  collectes$!: Observable<Collecte[]>;
   error$!: Observable<string>;
   constructor(private fb: FormBuilder, private store: Store , private router: Router , private sweetAlertService: SweetAlertService) {
     this.currentUser$ = this.store.pipe(select(selectCurrentUser));
@@ -51,11 +51,11 @@ export class ParticulierComponent implements OnInit {
       type: ['', Validators.required],
       poids: ['', [Validators.required, Validators.min(1000)]],
       adresse: ['', Validators.required],
-      date: ['', [Validators.required]], // Apply date validation
-      horaire: ['', Validators.required], // Keep required validation for horaire
+      date: ['', [Validators.required]],
+      horaire: ['', Validators.required],
       notes: [''],
-      status: ['En attente', Validators.required], // Default to 'En attente'
-      collecteurId: [0, Validators.required], // Default value for collecteurId
+      status: ['En attente', Validators.required],
+      collecteurId: [0, Validators.required],
     });
   }
 
@@ -68,38 +68,33 @@ export class ParticulierComponent implements OnInit {
     }
 
     this.collectes$.pipe(take(1)).subscribe((collectes) => {
-      // Filter collectes where status is "En attente" or "En cours"
+
       const userCollectes = collectes.filter(
         (c) => c.CollecteId === this.AuthId && (c.status === "En attente" || c.status === "En cours")
       );
 
-      // Count pending collectes
+
       const pendingCount = userCollectes.length;
 
-      // Calculate total weight in grams
       const totalWeight = userCollectes.reduce((sum, c) => sum + c.poids, 0);
 
-      // Get form data
       const formData = this.collecteForm.value;
-      const newCollecteWeight = formData.poids; // Assume poids is in grams
+      const newCollecteWeight = formData.poids;
 
-      // Business Rules: Max 3 pending requests and max 10,000g (10kg) total weight
       if (pendingCount >= 3) {
         this.sweetAlertService.errorAlert("Error", "You cannot have more than 3 pending collectes.");
         return;
       }
-
-      if (totalWeight + newCollecteWeight > 10000) { // 10,000g = 10kg
+      if ((totalWeight / 1000) + newCollecteWeight > 10000) { // 10,000g = 10kg
         this.sweetAlertService.errorAlert("Error", "Total collecte weight cannot exceed 10kg (10,000g).");
         return;
       }
 
-      // Create collecte object
       const collecte: Collecte = {
         id: uuidv4(),
         type: formData.type,
         CollecteId: this.AuthId,
-        poids: formData.poids, // Keep it in grams
+        poids: formData.poids,
         adresse: formData.adresse,
         date: formData.date,
         horaire: formData.horaire,
@@ -108,10 +103,8 @@ export class ParticulierComponent implements OnInit {
         collecteurId: "",
       };
 
-      // Dispatch action
       this.store.dispatch(addCollecte({ collecte }));
 
-      // Reset form
       this.collecteForm.reset();
 
       this.collecteForm.patchValue({
