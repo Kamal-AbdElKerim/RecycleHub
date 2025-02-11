@@ -15,14 +15,13 @@ const initialState: AuthState = {
   users: [],
   currentUser: storedUser ? JSON.parse(storedUser) : null,
   error: null,
-  updateSuccess: null, // ✅ Added missing initialization
+  updateSuccess: null,
   updateError: null,
 };
 
 export const authReducer = createReducer(
   initialState,
 
-  // ✅ Store users when loaded
   on(AuthActions.loadUsersSuccess, (state, { users }) => ({
     ...state,
     users,
@@ -32,7 +31,6 @@ export const authReducer = createReducer(
     error,
   })),
 
-  // ✅ Store `currentUser` in `localStorage` after registration
   on(AuthActions.registerUserSuccess, (state, { user }) => {
     localStorage.setItem('currentUser', JSON.stringify(user));
     return {
@@ -48,7 +46,6 @@ export const authReducer = createReducer(
     error,
   })),
 
-  // ✅ Handle user update success and failure
   on(AuthActions.updateUserSuccess, (state, { user }) => {
     localStorage.setItem('currentUser', JSON.stringify(user));
     return {
@@ -65,7 +62,6 @@ export const authReducer = createReducer(
     updateError: error,
   })),
 
-  // ✅ Store `currentUser` in `localStorage` after login
   on(AuthActions.loginUserSuccess, (state, { user }) => {
     localStorage.setItem('currentUser', JSON.stringify(user));
     return {
@@ -78,19 +74,17 @@ export const authReducer = createReducer(
     error,
   })),
 
-  // ✅ Remove `currentUser` from `localStorage` on logout
   on(AuthActions.logoutUser, (state) => {
     localStorage.removeItem('currentUser');
     return {
       ...state,
       currentUser: null,
       error: null,
-      updateSuccess: null, // ✅ Reset update status
+      updateSuccess: null,
       updateError: null,
     };
   }),
 
-  // ✅ Fix `deleteUser` action logic
 
 
   on(AuthActions.deleteUser, (state, { userId }) => ({

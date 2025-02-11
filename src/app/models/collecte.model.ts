@@ -1,7 +1,7 @@
 export interface Collecte {
   id: string;
   CollecteId: string;
-  type: string[]; // Plastique, Verre, etc.
+  type: string[];
   poids: number;
   adresse: string;
   date: string;

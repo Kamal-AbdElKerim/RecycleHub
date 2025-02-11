@@ -60,7 +60,7 @@ export class CollecteEffects {
     )
   );
 
-  // ✅ Delete collecte
+  //  Delete collecte
   deleteCollecte$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CollecteActions.deleteCollecte),

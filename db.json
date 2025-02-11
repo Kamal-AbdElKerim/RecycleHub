@@ -94,6 +94,18 @@
       "birthDate": "2025-02-10",
       "profilePicture": "",
       "role": "particulier"
+    },
+    {
+      "id": "558865b7-b42e-42c6-b681-b53689ec9e71",
+      "email": "godigadu@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Omnis fuga Reprehen",
+      "lastName": "Blanditiis non nesci",
+      "address": "Pariatur Aliquip sa",
+      "phone": 4162626266,
+      "birthDate": "1990-06-09",
+      "profilePicture": "",
+      "role": "particulier"
     }
   ],
   "collectes": [

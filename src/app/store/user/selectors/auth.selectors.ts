@@ -13,7 +13,6 @@ export const selectAllUsers = createSelector(
   (state) => state.users
 );
 
-// ✅ Selector for authentication errors
 export const selectAuthError = createSelector(
   selectAuthState,
   (state) => state.error
@@ -21,7 +20,6 @@ export const selectAuthError = createSelector(
 
 
 
-// ✅ Selector for update error message
 export const selectUpdateError = createSelector(
   selectAuthState,
   (state) => state.updateError

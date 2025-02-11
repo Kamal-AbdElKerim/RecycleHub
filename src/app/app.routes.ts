@@ -5,6 +5,8 @@ import {NotfoundComponent} from "./component/notfound/notfound.component";
 import {CollecteurComponent} from "./component/collecteur/collecteur.component";
 import {collecteurGuard} from "./Guards/collecteur.guard";
 import {particulierGuard} from "./Guards/particulier.guard";
+import {IpComponent} from "./component/ip/ip.component";
+import {AuthResolver} from "./Resolver/Auth.resolver";
 
 
 export const routes: Routes = [
@@ -17,6 +19,11 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./component/register/register.component').then(m => m.RegisterComponent),
     canActivate: [isAuthGuard]
+  },
+  {
+    path: 'IpComponent',
+    loadComponent: () => import('./component/ip/ip.component').then(m => m.IpComponent),
+    canActivate: [authGuard] ,  resolve: { Auth: AuthResolver }
   },
   {
     path: 'particulier',
